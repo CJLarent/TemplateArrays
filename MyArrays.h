@@ -29,18 +29,21 @@ public:
 		}
 		
 	}
-	void Push(T item)
-	{
-		assert(m_BaseArray != nullptr);
-		if (m_ItemNumber >= m_MaxSize)
+	
+		void Push(T item)
 		{
-			Resize();
-			
-		}
-		m_BaseArray[m_ItemNumber] = item;
-		m_ItemNumber++;
+			assert(m_BaseArray != nullptr);
+			if (m_ItemNumber >= m_MaxSize)
+			{
+				Resize();
 
-	}
+			}
+			m_BaseArray[m_ItemNumber] = item;
+			m_ItemNumber++;
+
+		}
+	
+	
 	void Pop()
 	{
 		if (m_ItemNumber > 0)
