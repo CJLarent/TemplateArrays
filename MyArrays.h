@@ -2,13 +2,14 @@
 
 #include<cassert>
 #include<iostream>
+
 using namespace std;
 template<class T>
-class UnordredArray
+class UnordredArray 
 
 {
 public:
-	inline UnordredArray(int size, int GrowBy = 1) :
+	 UnordredArray(int size, int GrowBy = 1) :
 		m_BaseArray(NULL), m_MaxSize(0), m_Grow(0), m_ItemNumber(0)
 	{
 		if (size)
@@ -105,20 +106,32 @@ public:
 	{
 		assert(item >= 0);
 		m_Grow = item;
+
 	}
+	void MargeSort( )
+	{	
+		
+		assert(m_BaseArray != nullptr);
+		T* tempArray = new T[m_ItemNumber];
+		assert(tempArray != nullptr);
+		MargeSort(tempArray, 0, m_ItemNumber - 1);
+		delete[]tempArray;
+	}
+
 private:
 
 	bool Resize()
 	{
-		if (m_Grow <= 0)// build a try and catch 
+		if (m_Grow <= 0)
 		{
+			cout << "less then zero ! ! !" << endl;
 			return false;
 		}
 		T* temp = new T[m_MaxSize + m_Grow];
 		assert(temp != nullptr);
 
 		// copying over to the same place in memory
-		//memccpy(temp,m_BaseArray,sizeof(T)*m_MaxSize);
+		memcpy(temp, m_BaseArray, sizeof(T) * m_MaxSize);
 
 		// clean up 
 		delete[]m_BaseArray;
@@ -129,7 +142,53 @@ private:
 		return true;
 
 	}
+	void MargeSort(T* tempArray, int lowwerBound, int upperBound)// Big O = O(N logN)
+	{
+		// base case
+		if (lowwerBound == upperBound)
+		{
+			//cout << "both values are poniting to one item" << endl;
+			return;
+		}
+		int midPonit = (lowwerBound + upperBound) >> 1;
 
+		MargeSort(tempArray, lowwerBound, midPonit);
+		MargeSort(tempArray,  midPonit+ 1 ,upperBound);
+
+		Marge(tempArray, lowwerBound, upperBound, midPonit);// recursve call 
+	}
+	void Marge(T* tempArray, int low, int  upper, int middle)
+	{
+		cout <<"marge has started" << endl;
+		int tempLow = low, tempMidponit = middle - 1;
+		int index = 0;
+
+		while (low<=tempMidponit&&middle<=upper)
+		{
+			if (m_BaseArray[low] < m_BaseArray[middle])// the middle becomes the new lowbound 
+			{
+				tempArray[index++] = m_BaseArray[low++];// prefix notion used++ checkes before going though the array 
+					
+			}
+			else
+			{
+				tempArray[index++] = m_BaseArray[middle++];
+			}
+		}
+		while (low<=tempMidponit)
+		{
+			tempArray[index++] = m_BaseArray[low++];
+		}
+		while (middle<=upper)
+		{
+			tempArray[index++] = m_BaseArray[middle++];
+		}
+		for (int i = 0; i < upper - tempLow+ 1; i++)
+		{
+			m_BaseArray[tempLow + i] = tempArray[i];
+		}
+	}
+	
 private:
 	
 	
