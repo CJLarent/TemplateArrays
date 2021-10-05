@@ -16,9 +16,12 @@ int main()
 	Array.Push(7);
 	Array.Push(3);
 	Array.Push(1);
+	Array.Push(5);
+	Array.Push(11);
+	Array.Push(15);
 
-	for (int i = 0; i<  Array.GetSize(); i++)
-	{
+	for (int i = 0; i< Array.GetSize(); i++)
+	 {
 		cout << Array[i] << " Item" << endl;
 	}
 	
@@ -30,17 +33,7 @@ int main()
 	}
 	
 	
-	// Exception Handling
-	try {
-		;
-		Array.Push('V'),Array.GetSize();
-		throw 'V',Array.Push(1);
-	}
-	catch ( ...) {
-		cerr << message << endl;
-
-
-	}
+	
 	
 
 

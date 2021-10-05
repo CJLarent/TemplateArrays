@@ -34,13 +34,32 @@ public:
 		void Push(T item)
 		{
 			assert(m_BaseArray != nullptr);
+			bool doubles = false;
+			for (int i = 0; i < m_ItemNumber;i++)
+			{
+				
+				
+				if (item == m_BaseArray[i])
+				{
+					doubles = true;
+					cout << "Double found !!! " << item << endl;
+					
+				
+				}
+			}
+			
+			
 			if (m_ItemNumber >= m_MaxSize)
 			{
 				Resize();
 
 			}
-			m_BaseArray[m_ItemNumber] = item;
-			m_ItemNumber++;
+			if (doubles == false)
+			{
+				m_BaseArray[m_ItemNumber] = item;
+				m_ItemNumber++;
+			}
+			
 
 		}
 	
@@ -144,20 +163,23 @@ private:
 	}
 	void MargeSort(T* tempArray, int lowwerBound, int upperBound)// Big O = O(N logN)
 	{
+
 		// base case
 		if (lowwerBound == upperBound)
 		{
 			//cout << "both values are poniting to one item" << endl;
+
 			return;
 		}
 		int midPonit = (lowwerBound + upperBound) >> 1;
-
+		
 		MargeSort(tempArray, lowwerBound, midPonit);
 		MargeSort(tempArray,  midPonit+ 1 ,upperBound);
+	
+		Marge(tempArray, lowwerBound, midPonit+1,upperBound );// recursve call 
 
-		Marge(tempArray, lowwerBound, upperBound, midPonit);// recursve call 
 	}
-	void Marge(T* tempArray, int low, int  upper, int middle)
+	void Marge(T* tempArray, int low, int  middle, int upper)
 	{
 		cout <<"marge has started" << endl;
 		int tempLow = low, tempMidponit = middle - 1;
