@@ -6,33 +6,46 @@ using namespace std;
 int main()
 {
 	
-	UnordredArray<int>Array(7);
-
+	//UnordredArray<int>arrayC(6);
+	UnordredArray<char>Barray(4);
+	UnordredArray<int>arrayC(3);
 	const char * message = "NOT VALID PUSH !!!";
+	
+	arrayC.Push(12);
+	arrayC.Push(8);
+	arrayC.Push(3);
+	arrayC.Push(7);
+	
 
-	Array.Push(10);
-	Array.Push(5);
-	Array.Push(2);
-	Array.Push(7);
-	Array.Push(3);
-	Array.Push(1);
-	Array.Push(5);
-	Array.Push(11);
-	Array.Push(15);
-
-	for (int i = 0; i< Array.GetSize(); i++)
+	for (int i = 0; i< arrayC.GetSize(); i++)
 	 {
-		cout << Array[i] << " Item" << endl;
+		cout << arrayC[i] << " Item" << endl;
 	}
 	
-	Array.MargeSort();
+	arrayC.MargeSort();
 
-	for (int i = 0; i < Array.GetSize(); i++)
+	for (int i = 0; i < arrayC.GetSize(); i++)
 	{
-		cout << Array[i] << " Item" << endl;
+		cout << arrayC[i] << " Item" << endl;
 	}
+	cout << endl;
 	
+	Barray.Push('V');
+	Barray.Push('C');
+	Barray.Push('u');
+	Barray.Push('b');
+	Barray.Push('i');
 	
+
+	for (int i = 0; i < Barray.GetSize(); i++)
+	{
+		cout << Barray[i] << " Latter" << endl;
+	}
+	Barray.MargeSort();
+	for (int i = 0; i < Barray.GetSize(); i++)
+	{
+		cout << Barray[i] << " Latter" << endl;
+	}
 	
 	
 
